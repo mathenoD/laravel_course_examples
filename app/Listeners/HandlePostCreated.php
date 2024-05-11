@@ -32,6 +32,6 @@ class HandlePostCreated
         ]);
 
         // Send email
-        Mail::to('example@example.com')->send(new PostCreatedMail($event->post));
+        // Mail::to('example@example.com')->send(new PostCreatedMail($event->post));
     }
 }

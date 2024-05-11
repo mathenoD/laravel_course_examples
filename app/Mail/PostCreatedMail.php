@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,11 @@ class PostCreatedMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $post;
+    
+    public function __construct(Post $post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -34,11 +37,13 @@ class PostCreatedMail extends Mailable
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    public function content()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->view('emails.post_created')
+        ->with([
+            'title' => $this->post->title,
+            'content' => $this->post->content
+        ]);
     }
 
     /**
