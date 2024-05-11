@@ -123,10 +123,4 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-
-    'providers' => [
-        App\Providers\EventServiceProvider::class, // Ensure this line is present
-    ],
-
-
 ];
